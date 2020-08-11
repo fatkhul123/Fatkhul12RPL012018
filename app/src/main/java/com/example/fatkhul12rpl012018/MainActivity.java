@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = txtusername.getText().toString();
                 final String password = txtpass.getText().toString();
-                AndroidNetworking.post("http://127.0.0.1/Fatkhulrpl1/login.php")
+                AndroidNetworking.post("http://192.168.1.5/Fatkhulrpl1/login.php")
                         .addBodyParameter("nama", txtusername.getText().toString() )
                         .addBodyParameter("password", txtpass.getText().toString() )
                         .setTag("test")
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
 
                                     try {
-                                        int suksess = response.getInt("sukses");
+                                        int suksess = response.getInt("suksess");
                                         int id = response.getInt("id");
                                         if (suksess == 1 ){
                                             Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
