@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button login = findViewById(R.id.btnLogin);
+        final Button login = findViewById(R.id.btnLogin);
         final EditText txtusername = findViewById(R.id.user);
         final EditText txtpass = findViewById(R.id.pass);
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
                             public void onResponse(JSONObject response) {
+                                Log.d("cek response", String.valueOf(response));
                                 if ((username.isEmpty() || password.isEmpty())) {
                                     Toast.makeText(MainActivity.this, "semuanya harus di isi", Toast.LENGTH_SHORT).show();
                                 } else {
