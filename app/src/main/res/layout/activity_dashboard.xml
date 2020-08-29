@@ -2,8 +2,95 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Dashboard">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    style="@style/parent.contentLayout">
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/textViewUser"
+                    style="@style/viewParent.headerText"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerVertical="true"
+                    android:maxLines="2" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userpict"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/user"
+                    app:civ_border_color="@color/imageBorderColor"
+                    app:civ_border_width="2dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:cardCornerRadius="16dp"
+                    app:cardPreventCornerOverlap="false"
+                    app:cardBackgroundColor="@color/colorAccent"
+                    android:minHeight="200dp"
+                    android:layout_alignParentTop="true">
+
+
+                    <ImageView
+                        android:layout_width="246dp"
+                        android:layout_height="200dp"
+                        android:layout_marginLeft="35dp"
+                        android:src="@drawable/bike"
+                         />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <TextView
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:text="Pilih Menu"
+                    style="@style/viewParent.headerText"/>
+
+
+
+            </RelativeLayout>
+
+            <!--remove the below layout with recycler view, use card poplar courses as model for design-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-2dp"
+                tools:listitem="@layout/mainlist" />
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
