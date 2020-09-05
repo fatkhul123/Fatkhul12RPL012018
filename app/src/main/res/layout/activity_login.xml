@@ -33,7 +33,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:padding="12dp"
-                    android:src="@drawable/bike" />
+                    android:src="@drawable/ic_bicycle" />
             </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
