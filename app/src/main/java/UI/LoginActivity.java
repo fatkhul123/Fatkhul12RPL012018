@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = txtusername.getText().toString();
                 final String password = txtpass.getText().toString();
-                AndroidNetworking.post("http://192.168.1.8/API1_FATKHUL_12RPL1/login.php")
+                AndroidNetworking.post("http://192.168.6.85/API1_FATKHUL_12RPL1/login.php")
                         .addBodyParameter("nama", txtusername.getText().toString() )
                         .addBodyParameter("password", txtpass.getText().toString() )
                         .setTag("test")
