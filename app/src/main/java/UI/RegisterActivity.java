@@ -17,6 +17,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.fatkhul12rpl012018.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -40,35 +41,44 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText nohp = findViewById(R.id.nohp);
         final EditText alamat = findViewById(R.id.alamat);
         final EditText email = findViewById(R.id.email);
+        final EditText noktp = findViewById(R.id.noktp);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AndroidNetworking.post("http://192.168.6.85/API1_FATKHUL_12RPL1/register.php")
-                        .addBodyParameter("username", txt_username.getText().toString())
+                AndroidNetworking.post("http://192.168.1.7/API1_FATKHUL_12RPL1/register.php")
+                        .addBodyParameter("nama", txt_username.getText().toString())
                         .addBodyParameter("nohp", nohp.getText().toString())
                         .addBodyParameter("email", email.getText().toString())
                         .addBodyParameter("alamat", alamat.getText().toString())
                         .addBodyParameter("password", txt_password.getText().toString())
+                        .addBodyParameter("noktp", txt_password.getText().toString())
                         .setTag("test")
                         .setPriority(Priority.MEDIUM)
                         .build()
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                String username = txt_username.getText().toString();
-                                String password = txt_password.getText().toString();
-                                String alamatt = alamat.getText().toString();
-                                String emaill = email.getText().toString();
-                                String nohpp = nohp.getText().toString();
+                                try {
+                                    String username = txt_username.getText().toString();
+                                    String password = txt_password.getText().toString();
+                                    String alamatt = alamat.getText().toString();
+                                    String emaill = email.getText().toString();
+                                    String nohpp = nohp.getText().toString();
+                                    String msg = response.getString("MESSAGE");
+                                    if ((username.isEmpty()) || (password.isEmpty()) || (alamatt.isEmpty()) || (emaill.isEmpty() || (nohpp.isEmpty()))) {
+                                        Toast.makeText(RegisterActivity.this, "semuanya harus di isi", Toast.LENGTH_SHORT).show();
 
-                                if ((username.isEmpty()) || (password.isEmpty()) || (alamatt.isEmpty()) || (emaill.isEmpty() || (nohpp.isEmpty()))) {
-                                    Toast.makeText(RegisterActivity.this, "semuanya harus di isi", Toast.LENGTH_SHORT).show();
-
-                                } else {
-                                    Toast.makeText(RegisterActivity.this, "success", Toast.LENGTH_SHORT).show();
-                                    Intent in = new Intent(RegisterActivity.this, LoginActivity.class);
-                                    startActivity(in);
+                                    } else {
+                                        Toast.makeText(RegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+                                        System.out.println(
+                                                "sampai sini"
+                                        );
+                                        Intent in = new Intent(RegisterActivity.this, LoginActivity.class);
+                                        startActivity(in);
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
                             }
 

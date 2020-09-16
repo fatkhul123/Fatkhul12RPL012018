@@ -109,6 +109,19 @@
                         android:layout_marginTop="@dimen/loginViewsMargin"
                         android:textColorHint="@color/themeColor">
                         <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/noktp"
+                            style="@style/modifiedEditText"
+                            android:hint="No KTP"
+                            android:maxLines="1"
+                            android:inputType="textPassword"
+                            android:textColor="@color/themeColor"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+ <com.google.android.material.textfield.TextInputLayout
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin"
+                        android:textColorHint="@color/themeColor">
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/password"
                             style="@style/modifiedEditText"
                             android:hint="Password"

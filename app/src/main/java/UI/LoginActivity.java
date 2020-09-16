@@ -48,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = txtusername.getText().toString();
                 final String password = txtpass.getText().toString();
-                AndroidNetworking.post("http://192.168.6.85/API1_FATKHUL_12RPL1/login.php")
+                AndroidNetworking.post("http://192.168.1.7/API1_FATKHUL_12RPL1/login.php")
                         .addBodyParameter("nama", txtusername.getText().toString() )
                         .addBodyParameter("password", txtpass.getText().toString() )
                         .setTag("test")
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } else {
 
                                     try {
-                                        int suksess = response.getInt("success");
+                                        int suksess = response.getInt("suksess");
                                         int id = response.getInt("id");
                                         if (suksess == 1 ){
                                             Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
