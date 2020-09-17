@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Fatkhul12RPL012018</string>
+    <string-array name="roleuser">
+        <item>Admin</item>
+        <item>User</item>
+    </string-array>
 </resources>

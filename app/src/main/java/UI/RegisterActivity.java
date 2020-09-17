@@ -6,8 +6,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +25,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class RegisterActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity  {
 
     ProgressDialog pDialog;
     Intent intent;
@@ -42,17 +45,16 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText alamat = findViewById(R.id.alamat);
         final EditText email = findViewById(R.id.email);
         final EditText noktp = findViewById(R.id.noktp);
-
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AndroidNetworking.post("http://192.168.1.7/API1_FATKHUL_12RPL1/register.php")
-                        .addBodyParameter("nama", txt_username.getText().toString())
+                AndroidNetworking.post("http://192.168.1.10/API1_FATKHUL_12RPL1/register.php")
+                        .addBodyParameter("username", txt_username.getText().toString())
                         .addBodyParameter("nohp", nohp.getText().toString())
                         .addBodyParameter("email", email.getText().toString())
                         .addBodyParameter("alamat", alamat.getText().toString())
                         .addBodyParameter("password", txt_password.getText().toString())
-                        .addBodyParameter("noktp", txt_password.getText().toString())
+                        .addBodyParameter("noktp", noktp.getText().toString())
                         .setTag("test")
                         .setPriority(Priority.MEDIUM)
                         .build()
@@ -62,11 +64,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 try {
                                     String username = txt_username.getText().toString();
                                     String password = txt_password.getText().toString();
-                                    String alamatt = alamat.getText().toString();
-                                    String emaill = email.getText().toString();
-                                    String nohpp = nohp.getText().toString();
+                                    String lamat = alamat.getText().toString();
+                                    String mail = email.getText().toString();
+                                    String hp = nohp.getText().toString();
+                                    String ktp = noktp.getText().toString();
                                     String msg = response.getString("MESSAGE");
-                                    if ((username.isEmpty()) || (password.isEmpty()) || (alamatt.isEmpty()) || (emaill.isEmpty() || (nohpp.isEmpty()))) {
+                                    if ((username.isEmpty()) || (password.isEmpty()) || (lamat.isEmpty()) || (mail.isEmpty()) || (hp.isEmpty()) || (ktp.isEmpty())) {
                                         Toast.makeText(RegisterActivity.this, "semuanya harus di isi", Toast.LENGTH_SHORT).show();
 
                                     } else {

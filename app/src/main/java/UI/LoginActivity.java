@@ -25,11 +25,14 @@ public class LoginActivity extends AppCompatActivity {
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String ID = "id";
     public static final String USERNAME = "username";
+    public static final String ROLE = "role";
+    public static final String NOKTP = "noktp";
+    public static final String NOHP = "nohp";
+    public static final String EMAIL = "email";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         final Button login = findViewById(R.id.btnlogin);
         final EditText txtusername = findViewById(R.id.username);
         final EditText txtpass = findViewById(R.id.password);
@@ -48,8 +51,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = txtusername.getText().toString();
                 final String password = txtpass.getText().toString();
-                AndroidNetworking.post("http://192.168.1.7/API1_FATKHUL_12RPL1/login.php")
-                        .addBodyParameter("nama", txtusername.getText().toString() )
+                AndroidNetworking.post("http://192.168.1.10/API1_FATKHUL_12RPL1/login.php")
+                        .addBodyParameter("username", txtusername.getText().toString() )
                         .addBodyParameter("password", txtpass.getText().toString() )
                         .setTag("test")
                         .setPriority(Priority.MEDIUM)
@@ -65,16 +68,31 @@ public class LoginActivity extends AppCompatActivity {
                                     try {
                                         int suksess = response.getInt("suksess");
                                         int id = response.getInt("id");
+                                        String role = response.getString("role");
+                                        String ktp = response.getString("ktp");
+                                        String hp = response.getString("hp");
+                                        String mail = response.getString("email");
                                         if (suksess == 1 ){
                                             Toast.makeText(LoginActivity.this, "success", Toast.LENGTH_SHORT).show();
                                             SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
                                             SharedPreferences.Editor editor = sharedPreferences.edit();
                                             editor.putString(ID, String.valueOf(id));
+                                            editor.putString(ROLE,role);
+                                            editor.putString(NOHP,hp);
+                                            editor.putString(NOKTP,ktp);
+                                            editor.putString(EMAIL,mail);
                                             editor.putString(USERNAME, String.valueOf(username));
                                             editor.apply();
-                                            Intent in = new Intent(LoginActivity.this, Dashboard.class);
-                                            startActivity(in);
-                                            finish();
+                                            if (role == "admin"){
+                                                Intent in = new Intent(LoginActivity.this, Dashboard.class);
+                                                startActivity(in);
+                                                finish();
+                                            } else {
+                                                Intent in = new Intent(LoginActivity.this, Dashboard.class);
+                                                startActivity(in);
+                                                finish();
+                                            }
+
                                         }
                                     } catch (JSONException e) {
                                         e.printStackTrace();

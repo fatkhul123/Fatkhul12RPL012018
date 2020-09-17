@@ -10,7 +10,7 @@
     <color name="Transparent">#00000000</color>
     <color name="black">#000000</color>
     <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#000</color>
+    <color name="colorPrimaryDark">@color/white</color>
     <color name="colorAccent">#11CFC5</color>
     <color name="themeColor">#11CFC5</color>
     <color name="darkTextColor">#020000</color>

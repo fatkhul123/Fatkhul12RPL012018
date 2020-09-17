@@ -5,17 +5,18 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="UI.LoginActivity"
     android:background="@color/white"
-    >
+    tools:context="UI.LoginActivity">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
         android:layout_centerInParent="true"
-        android:paddingTop="20dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingTop="20dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,28 +34,27 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:padding="12dp"
-                    android:src="@drawable/ic_bicycle" />
+                    android:src="@drawable/ic_bike" />
             </RelativeLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
-                android:textColorHint="@color/themeColor"
-                >
+                android:textColorHint="@color/themeColor">
+
                 <EditText
                     android:id="@+id/username"
                     style="@style/modifiedEditText"
-                    android:maxLines="1"
                     android:hint="Username"
-                    android:textColor="@color/themeColor"
-                   />
+                    android:maxLines="1"
+                    android:textColor="@color/themeColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin"
-                app:passwordToggleEnabled="true"
-                android:textColorHint="@color/themeColor">
+                android:textColorHint="@color/themeColor"
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/password"
@@ -62,40 +62,40 @@
                     android:hint="password"
                     android:inputType="textPassword"
                     android:maxLines="1"
-                    android:textColor="@color/themeColor"
-                   />
+                    android:textColor="@color/themeColor" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <Button
                 android:id="@+id/btnlogin"
                 style="@style/loginButton"
-                android:text="LOGIN"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:background="@color/themeColor"
+                android:text="LOGIN"
 
                 />
+
             <TextView
                 android:id="@+id/register"
                 style="@style/parent"
-                android:textAlignment="center"
-                android:textColor="@color/themeColor"
-                android:textSize="17sp"
-                android:text="New user? Register Now"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 android:background="@color/Transparent"
-                />
+                android:text="New user? Register Now"
+                android:textAlignment="center"
+                android:textColor="@color/themeColor"
+                android:textSize="17sp" />
+
         </LinearLayout>
     </ScrollView>
+
     <View
-        android:layout_marginTop="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
         android:layout_width="11dp"
         android:layout_height="match_parent"
-        android:background="@drawable/ic_side_png"/>
-
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/ic_side_png" />
 
 
 </RelativeLayout>
