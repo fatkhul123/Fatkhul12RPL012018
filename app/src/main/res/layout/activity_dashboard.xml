@@ -85,14 +85,13 @@
                             android:layout_height="66dp"
                             android:layout_gravity="center"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/user" />
+                            android:src="@drawable/user"/>
 
                         <TextView
                             android:id="@+id/username"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_text_card"
-                            android:gravity="center"
                             android:text="UserName"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -103,7 +102,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_text_card"
-                            android:gravity="center"
                             android:text="Email"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -113,7 +111,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_text_card"
-                            android:gravity="center"
                             android:text="No KTP"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -123,7 +120,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/top_text_card"
-                            android:gravity="center"
                             android:text="No HP"
                             android:textColor="@color/white"
                             android:textSize="16sp" />
@@ -147,13 +143,6 @@
                 android:layout_marginTop="5dp"
                 android:background="@null">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="80dp"
-                    android:orientation="vertical">
-
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -172,10 +161,9 @@
                         android:weightSum="2">
 
                         <androidx.cardview.widget.CardView
-
+android:id="@+id/card1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-
                             android:layout_marginTop="@dimen/horizontal_card"
                             android:layout_marginEnd="@dimen/horizontal_card"
                             android:layout_marginRight="@dimen/horizontal_card"
@@ -210,7 +198,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/top_text_card"
                                     android:gravity="center"
-                                    android:text="ListUser"
+                                    android:text="List User"
                                     android:textColor="@color/white"
                                     android:textSize="16sp" />
 
@@ -220,11 +208,9 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-
+                            android:id="@+id/card2"
                             android:layout_width="0dp"
-
                             android:layout_height="wrap_content"
-
                             android:layout_marginLeft="@dimen/horizontal_card"
                             android:layout_marginTop="@dimen/horizontal_card"
                             android:layout_marginBottom="@dimen/horizontal_card"

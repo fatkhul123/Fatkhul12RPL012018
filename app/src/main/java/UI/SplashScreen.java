@@ -43,11 +43,11 @@ public class SplashScreen extends AppCompatActivity {
                 SplashScreen.this.finish();
             } else {
                 if (role == "admin"){
-                    Intent in = new Intent(SplashScreen.this, Dashboard.class);
+                    Intent in = new Intent(SplashScreen.this, DashboardAdmin.class);
                     startActivity(in);
                     finish();
                 } else {
-                    Intent in = new Intent(SplashScreen.this, Dashboard.class);
+                    Intent in = new Intent(SplashScreen.this, DashboardAdmin.class);
                     startActivity(in);
                     finish();
                 }

@@ -2,6 +2,7 @@ package UI;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 
 import com.example.fatkhul12rpl012018.R;
 
-public class Dashboard extends AppCompatActivity {
+public class DashboardAdmin extends AppCompatActivity {
 
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String ID = "id";
@@ -33,6 +34,8 @@ public class Dashboard extends AppCompatActivity {
         TextView hp = findViewById(R.id.nohp);
         TextView mail = findViewById(R.id.email);
         Button logout = findViewById(R.id.logout);
+        CardView listuser = findViewById(R.id.card1);
+        CardView listsepeda = findViewById(R.id.card2);
 
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         String username = sharedPreferences.getString(USERNAME, "");
@@ -44,10 +47,24 @@ public class Dashboard extends AppCompatActivity {
         hp.setText(nohp);
         mail.setText(email);
 
+        listuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(DashboardAdmin.this, ListUser.class);
+                startActivity(in);
+            }
+        });
+        listsepeda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(DashboardAdmin.this, ListSepeda.class);
+                startActivity(in);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new AlertDialog.Builder(Dashboard.this)
+                new AlertDialog.Builder(DashboardAdmin.this)
                         .setMessage("Anda yakin ingin keluar ?")
                         .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
                             @Override
@@ -63,7 +80,7 @@ public class Dashboard extends AppCompatActivity {
                                     SharedPreferences.Editor editor = sharedPreferences.edit();
                                     editor.clear();
                                     editor.commit();
-                                    Intent in = new Intent(Dashboard.this, LoginActivity.class);
+                                    Intent in = new Intent(DashboardAdmin.this, LoginActivity.class);
                                     startActivity(in);
                                     finish();
                                 }

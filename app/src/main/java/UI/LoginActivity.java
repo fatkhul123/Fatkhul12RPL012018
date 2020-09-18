@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = txtusername.getText().toString();
                 final String password = txtpass.getText().toString();
-                AndroidNetworking.post("http://192.168.1.10/API1_FATKHUL_12RPL1/login.php")
+                AndroidNetworking.post("http://192.168.1.6/API1_FATKHUL_12RPL1/login.php")
                         .addBodyParameter("username", txtusername.getText().toString() )
                         .addBodyParameter("password", txtpass.getText().toString() )
                         .setTag("test")
@@ -84,11 +84,11 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString(USERNAME, String.valueOf(username));
                                             editor.apply();
                                             if (role == "admin"){
-                                                Intent in = new Intent(LoginActivity.this, Dashboard.class);
+                                                Intent in = new Intent(LoginActivity.this, DashboardAdmin.class);
                                                 startActivity(in);
                                                 finish();
                                             } else {
-                                                Intent in = new Intent(LoginActivity.this, Dashboard.class);
+                                                Intent in = new Intent(LoginActivity.this, DashboardAdmin.class);
                                                 startActivity(in);
                                                 finish();
                                             }
