@@ -101,10 +101,10 @@ public class ListSepeda extends AppCompatActivity {
                                 for (int i = 0; i < hasilList.length(); i++) {
                                     JSONObject hasil = hasilList.getJSONObject(i);
                                     User item = new User();
-                                    item.setUsername(hasil.getString("username"));
-                                    item.setEmail(hasil.getString("email"));
-                                    item.setNoKTP(hasil.getString("noktp"));
-                                    item.setNoHP(hasil.getString("nohp"));
+                                    item.setUsername(hasil.getString("merk"));
+                                    item.setEmail(hasil.getString("jenis"));
+                                    item.setNoKTP(hasil.getString("warna"));
+                                    item.setNoHP(hasil.getString("hargasewa"));
                                     userList.add(item);
                                 }
 
