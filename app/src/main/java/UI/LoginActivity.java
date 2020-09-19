@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String username = txtusername.getText().toString();
                 final String password = txtpass.getText().toString();
-                AndroidNetworking.post("http://192.168.1.6/API1_FATKHUL_12RPL1/login.php")
+                AndroidNetworking.post("http://192.168.43.132/API1_FATKHUL_12RPL1/login.php")
                         .addBodyParameter("username", txtusername.getText().toString() )
                         .addBodyParameter("password", txtpass.getText().toString() )
                         .setTag("test")
@@ -83,12 +83,12 @@ public class LoginActivity extends AppCompatActivity {
                                             editor.putString(EMAIL,mail);
                                             editor.putString(USERNAME, String.valueOf(username));
                                             editor.apply();
-                                            if (role == "admin"){
+                                            if (role.equalsIgnoreCase("admin")){
                                                 Intent in = new Intent(LoginActivity.this, DashboardAdmin.class);
                                                 startActivity(in);
                                                 finish();
                                             } else {
-                                                Intent in = new Intent(LoginActivity.this, DashboardAdmin.class);
+                                                Intent in = new Intent(LoginActivity.this, DashboardUser.class);
                                                 startActivity(in);
                                                 finish();
                                             }
@@ -104,6 +104,11 @@ public class LoginActivity extends AppCompatActivity {
                             @Override
                             public void onError(ANError error) {
                                 Toast.makeText(LoginActivity.this, "gagal",Toast.LENGTH_SHORT).show();
+                                Log.d("GZS", "onError: " + error.getErrorBody());
+                                Log.d("GZS", "onError: " + error.getLocalizedMessage());
+                                Log.d("GZS", "onError: " + error.getErrorDetail());
+                                Log.d("GZS", "onError: " + error.getResponse());
+                                Log.d("GZS  ", "onError: " + error.getErrorCode());
                             }
                         });
 

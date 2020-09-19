@@ -14,11 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="UI.ListSepeda"
+            android:name="UI.DashboardUser"
             android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
+            android:name="UI.ListSepeda"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
             android:name="UI.ListUser"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name="UI.SplashScreen"
             android:theme="@style/Theme.AppCompat.NoActionBar">

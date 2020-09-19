@@ -83,26 +83,32 @@ public class ListUser extends AppCompatActivity {
     }
 
     private void userapi() {
-        AndroidNetworking.get("http://192.168.1.6/API1_FATKHUL_12RPL1/show_user.php")
-                .setTag("leagues")
+        AndroidNetworking.get("http://192.168.43.132/API1_FATKHUL_12RPL1/show_user.php")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            JSONArray hasilList = response.getJSONArray("events");
-                            for (int i = 0; i < hasilList.length(); i++) {
-                                JSONObject hasil = hasilList.getJSONObject(i);
-                                User item = new User();
-                                item.setUsername(hasil.getString("username"));
-                                item.setEmail(hasil.getString("email"));
-                                item.setNoKTP(hasil.getString("noktp"));
-                                item.setNoHP(hasil.getString("nohp"));
-                                System.out.println("qwert " + hasil.getString("strEvent"));
-                                userList.add(item);
-                            }
+                            String status = response.optString("STATUS");
+                            String message = response.optString("MESSAGE");
+                            String sender = response.optString("SENDER");
+                            if (status.equalsIgnoreCase("SUCCESS")) {
+                                JSONArray hasilList = response.optJSONObject("PAYLOAD").optJSONArray("DATA");
 
+                                if (hasilList == null) return;
+
+                                for (int i = 0; i < hasilList.length(); i++) {
+                                    JSONObject hasil = hasilList.getJSONObject(i);
+                                    User item = new User();
+                                    item.setUsername(hasil.getString("username"));
+                                    item.setEmail(hasil.getString("email"));
+                                    item.setNoKTP(hasil.getString("noktp"));
+                                    item.setNoHP(hasil.getString("nohp"));
+                                    userList.add(item);
+                                }
+
+                            }
                             usadap.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -124,6 +130,7 @@ public class ListUser extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
     }
+
     public boolean onSupportNavigateUp() {
         finish();
         return true;
