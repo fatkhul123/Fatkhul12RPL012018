@@ -83,7 +83,7 @@ public class ListSepeda extends AppCompatActivity {
     }
 
     private void userapi() {
-        AndroidNetworking.get("http://192.168.43.132/API1_FATKHUL_12RPL1/show_user.php")
+        AndroidNetworking.get("http://192.168.43.132/API1_FATKHUL_12RPL1/show_sepeda.php")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
