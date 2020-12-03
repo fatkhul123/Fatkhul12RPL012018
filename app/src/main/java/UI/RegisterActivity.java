@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity  {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AndroidNetworking.post("http://192.168.43.132/API1_FATKHUL_12RPL1/register.php")
+                AndroidNetworking.post("http://192.168.1.4/API1_FATKHUL_12RPL1/register.php")
                         .addBodyParameter("username", txt_username.getText().toString())
                         .addBodyParameter("nohp", nohp.getText().toString())
                         .addBodyParameter("email", email.getText().toString())

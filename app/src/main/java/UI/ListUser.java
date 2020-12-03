@@ -7,9 +7,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +32,10 @@ import java.util.List;
 import Adapter.User;
 import Adapter.UserAdapter;
 
+import static UI.LoginActivity.ID;
+import static UI.LoginActivity.ROLE;
+import static UI.LoginActivity.SHARED_PREFS;
+
 public class ListUser extends AppCompatActivity {
 
 
@@ -38,6 +45,7 @@ public class ListUser extends AppCompatActivity {
     private ProgressDialog mProgress;
     SwipeRefreshLayout swipeLayout;
     private Toolbar toolbar;
+        private String id, role;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +56,9 @@ public class ListUser extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle("List User");
-
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        id = sharedPreferences.getString(ID, "");
+        role = sharedPreferences.getString(ROLE, "");
         user = findViewById(R.id.recycler_view);
         swipeLayout = findViewById(R.id.swipe_container);
 
@@ -83,7 +93,7 @@ public class ListUser extends AppCompatActivity {
     }
 
     private void userapi() {
-        AndroidNetworking.get("http://192.168.43.132/API1_FATKHUL_12RPL1/show_user.php")
+        AndroidNetworking.get("http://192.168.1.4/API1_FATKHUL_12RPL1/show_user.php")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {

@@ -1,24 +1,28 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.fatkhul12rpl012018.R;
 
 import java.util.List;
 
-public class UserAdapter extends RecyclerView.Adapter<UserAdapter.JadwalViewHolder> {
+public class SepedaAdapter extends RecyclerView.Adapter<SepedaAdapter.JadwalViewHolder> {
     private Context mContext;
 
 
-    private List<User> dataList;
+    private List<Sepeda> dataList;
 
-    public UserAdapter(Context mContext, List<User> dataList) {
+    public SepedaAdapter(Context mContext, List<Sepeda> dataList) {
         this.dataList = dataList;
         this.mContext = mContext;
 
@@ -28,17 +32,16 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.JadwalViewHold
     @Override
     public JadwalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        View view = layoutInflater.inflate(R.layout.mainlist, parent, false);
+        View view = layoutInflater.inflate(R.layout.mainlist_sepeda, parent, false);
         return new JadwalViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(JadwalViewHolder holder, int position) {
-        final User user = dataList.get(position);
-        holder.username.setText(user.getUsername());
-//         holder.email.setText(user.getEmail());
-//        holder.ktp.setText(user.getNoKTP());
-//        holder.hp.setText(user.getNoHP());
+        final Sepeda user = dataList.get(position);
+        holder.merk.setText(user.getMerk());
+        holder.jenis.setText(user.getJenis());
+        holder.harga.setText(user.getHarga());
 
 
     }
@@ -61,14 +64,15 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.JadwalViewHold
 
     public class JadwalViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView username, email, ktp, hp;
+        private TextView merk, jenis, harga;
+
 
         public JadwalViewHolder(View itemView) {
             super(itemView);
-            username = (TextView) itemView.findViewById(R.id.list);
-//            email = (TextView) itemView.findViewById(R.id.tv_Leagueaway);
-//            ktp = (TextView) itemView.findViewById(R.id.date);
-//            hp = (TextView) itemView.findViewById(R.id.atime);
+            merk = (TextView) itemView.findViewById(R.id.merk);
+            jenis = (TextView) itemView.findViewById(R.id.jenis);
+            harga = (TextView) itemView.findViewById(R.id.harga);
+//            image = itemView.findViewById(R.id.image);
 
 
 //            itemView.setOnClickListener(new View.OnClickListener() {

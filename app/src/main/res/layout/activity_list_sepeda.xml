@@ -3,33 +3,45 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/themeColor">
+    android:background="@color/themeColor"
+    android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/toolbar"
-        >
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     </androidx.appcompat.widget.Toolbar>
 
+<Button
+    android:id="@+id/adddata"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:text="Add Sepeda"
+    android:textColor="@color/themeColor"
+    android:background="@color/white"
+    />
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/swipe_container"
 
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="30dp">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="30dp"
-                tools:listitem="@layout/mainlist" />
+                android:layout_marginBottom="30dp"
+                tools:listitem="@layout/mainlist_sepeda" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </RelativeLayout>
 </LinearLayout>

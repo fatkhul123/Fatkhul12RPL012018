@@ -140,7 +140,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="5dp"
                 android:background="@null">
 
 
@@ -198,7 +197,7 @@ android:id="@+id/card1"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/top_text_card"
                                     android:gravity="center"
-                                    android:text="List User"
+                                    android:text="User"
                                     android:textColor="@color/white"
                                     android:textSize="16sp" />
 
@@ -239,7 +238,7 @@ android:id="@+id/card1"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/top_text_card"
                                     android:gravity="center"
-                                    android:text="List Sepeda"
+                                    android:text="Sepeda"
                                     android:textColor="@color/white"
                                     android:textSize="16sp" />
 

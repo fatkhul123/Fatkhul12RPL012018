@@ -3,7 +3,9 @@ package UI;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +18,8 @@ import static UI.LoginActivity.SHARED_PREFS;
 public class SplashScreen extends AppCompatActivity {
     private int SLEEP_TIMER = 1;
     private String id, role;
+    private boolean isFormFilled = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,33 +30,39 @@ public class SplashScreen extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
         id = sharedPreferences.getString(ID, "");
         role = sharedPreferences.getString(ROLE, "");
-        LogoLuncher logoLuncher = new LogoLuncher();
-        logoLuncher.start();
-    }
+        isFormFilled = true;
+        if (role.isEmpty()) {
+            isFormFilled = false;
+        }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-    private class LogoLuncher extends Thread {
-        public void run() {
-            try {
-                sleep(1000 * SLEEP_TIMER);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (id.isEmpty()) {
-                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
-                startActivity(intent);
-                SplashScreen.this.finish();
-            } else {
-                if (role == "admin"){
-                    Intent in = new Intent(SplashScreen.this, DashboardAdmin.class);
-                    startActivity(in);
-                    finish();
+                if (isFormFilled) {
+                    if (role.equalsIgnoreCase("Customer")) {
+                        Intent intent = new Intent(getApplicationContext(), DashboardUser.class);
+                        startActivity(intent);
+                        Toast.makeText(SplashScreen.this, role, Toast.LENGTH_SHORT).show();
+                        finish();
+                        finishAffinity();
+                    } else if (role.equalsIgnoreCase("Admin")) {
+                        Intent intent = new Intent(getApplicationContext(), DashboardAdmin.class);
+                        startActivity(intent);
+                        Toast.makeText(SplashScreen.this, role, Toast.LENGTH_SHORT).show();
+                        finish();
+                        finishAffinity();
+                    }
+
                 } else {
-                    Intent in = new Intent(SplashScreen.this, DashboardUser.class);
-                    startActivity(in);
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     finish();
                 }
             }
+        }, 3000);
 
-        }
+
     }
+
+
 }

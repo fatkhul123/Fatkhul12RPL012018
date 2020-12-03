@@ -6,11 +6,20 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.widget.TextView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
@@ -26,38 +35,51 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import Adapter.User;
+import Adapter.Sepeda;
+import Adapter.SepedaAdapter;
 import Adapter.UserAdapter;
+
+import static UI.LoginActivity.ID;
+import static UI.LoginActivity.ROLE;
+import static UI.LoginActivity.SHARED_PREFS;
 
 public class ListSepeda extends AppCompatActivity {
 
 
     private RecyclerView user;
-    private UserAdapter usadap;
-    private List<User> userList = new ArrayList<>();
+    private SepedaAdapter usadap;
+    private List<Sepeda> sepedaList = new ArrayList<Sepeda>();
     private ProgressDialog mProgress;
     SwipeRefreshLayout swipeLayout;
     private Toolbar toolbar;
+    private String id, role;
+    private Button add;
+    private EditText kode, nama, jenis, harga;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_user);
+        setContentView(R.layout.activity_list_sepeda);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTitle("List Sepeda");
-
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        id = sharedPreferences.getString(ID, "");
+        role = sharedPreferences.getString(ROLE, "");
         user = findViewById(R.id.recycler_view);
+        add = findViewById(R.id.adddata);
         swipeLayout = findViewById(R.id.swipe_container);
+
 
 
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Your code here
-                userList.clear();
+                sepedaList.clear();
                 userapi();
                 // To keep animation for 4 seconds
                 new Handler().postDelayed(new Runnable() {
@@ -76,14 +98,14 @@ public class ListSepeda extends AppCompatActivity {
     }
 
     private void setupRecycler() {
-        usadap = new UserAdapter(this, userList);
+        usadap = new SepedaAdapter(this, sepedaList);
         user.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         user.setHasFixedSize(true);
         user.setAdapter(usadap);
     }
 
     private void userapi() {
-        AndroidNetworking.get("http://192.168.43.132/API1_FATKHUL_12RPL1/show_sepeda.php")
+        AndroidNetworking.get("http://192.168.1.4/API1_FATKHUL_12RPL1/show_sepeda.php")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
@@ -100,12 +122,11 @@ public class ListSepeda extends AppCompatActivity {
 
                                 for (int i = 0; i < hasilList.length(); i++) {
                                     JSONObject hasil = hasilList.getJSONObject(i);
-                                    User item = new User();
-                                    item.setUsername(hasil.getString("merk"));
-                                    item.setEmail(hasil.getString("jenis"));
-                                    item.setNoKTP(hasil.getString("warna"));
-                                    item.setNoHP(hasil.getString("hargasewa"));
-                                    userList.add(item);
+                                    Sepeda item = new Sepeda();
+                                    item.setMerk(hasil.getString("merk"));
+                                    item.setJenis(hasil.getString("jenis"));
+                                    item.setHarga(hasil.getString("hargasewa"));
+                                    sepedaList.add(item);
                                 }
 
                             }
@@ -122,7 +143,13 @@ public class ListSepeda extends AppCompatActivity {
                     }
                 });
 
-
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in = new Intent(ListSepeda.this, AddSepeda.class);
+                startActivity(in);
+            }
+        });
     }
 
 
